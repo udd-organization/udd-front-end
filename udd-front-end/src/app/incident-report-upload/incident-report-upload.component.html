@@ -1,0 +1,74 @@
+<div class="card">
+  <h2>Upload & Parse Incident Document</h2>
+
+  <div class="upload">
+    <input
+         #fileInput
+        type="file"
+        accept="application/pdf,.pdf"
+        (change)="onFileChange($event)"
+    >
+        <button class="btn" (click)="parse()" [disabled]="!selectedFile || loading">Parse document</button>
+  </div>
+
+  @if (loading) { <div class="info">Processing...</div> }
+  @if (error) { <div class="error">{{ error }}</div> }
+  @if (success) { <div class="success">{{ success }}</div> }
+
+  @if (parsed) {
+    <form [formGroup]="form" class="form" (ngSubmit)="confirm()">
+      <div class="grid">
+        <label>
+          Employee full name
+          <input type="text" formControlName="employeeFullName">
+          @if (f.employeeFullName.touched && f.employeeFullName.invalid) {
+            <small class="invalid">Required, max 100 chars.</small>
+          }
+        </label>
+
+        <label>
+          Security organization name
+          <input type="text" formControlName="securityOrganizationName">
+          @if (f.securityOrganizationName.touched && f.securityOrganizationName.invalid) {
+            <small class="invalid">Required, max 100 chars.</small>
+          }
+        </label>
+
+        <label>
+          Attacked organization name
+          <input type="text" formControlName="attackedOrganizationName">
+          @if (f.attackedOrganizationName.touched && f.attackedOrganizationName.invalid) {
+            <small class="invalid">Required, max 100 chars.</small>
+          }
+        </label>
+
+        <label>
+          Severity
+          <select formControlName="severity">
+            @for (s of severityOptions; track s) {
+              <option [value]="s">{{ s }}</option>
+            }
+          </select>
+        </label>
+
+        <label class="wide">
+          Attacked organization address
+          <input type="text" formControlName="attackedOrganizationAddress">
+          @if (f.attackedOrganizationAddress.touched && f.attackedOrganizationAddress.invalid) {
+            <small class="invalid">Required, max 255 chars.</small>
+          }
+        </label>
+      </div>
+
+      <label>
+        Content
+        <textarea rows="8" formControlName="content"></textarea>
+      </label>
+
+      <div class="actions">
+        <button type="submit" class="btn primary" [disabled]="loading">Confirm changes</button>
+        <button type="button" class="btn" (click)="resetAll()" [disabled]="loading">Reset</button>
+      </div>
+    </form>
+  }
+</div>

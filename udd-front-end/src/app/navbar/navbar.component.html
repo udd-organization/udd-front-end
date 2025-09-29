@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <ul class="nav-links">
+      <li>
+        <button class="nav-links-item" (click)="homepage()">Homepage</button>
+      </li>
+
+      @if (isLoggedIn()) {
+        <li>
+          <button class="nav-links-item" (click)="logout()">Logout</button>
+        </li>
+      }
+    </ul>
+  </div>
+</nav>

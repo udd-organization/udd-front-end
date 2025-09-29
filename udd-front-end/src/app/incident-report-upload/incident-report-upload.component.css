@@ -1,0 +1,217 @@
+/* ===== Design tokens ===== */
+:host {
+  --card-bg: #fff;
+  --text: #1f2937;
+  --muted: #6b7280;
+
+  --border: #e5e7eb;
+  --input-bg: #fff;
+  --input-border: #d1d5db;
+  --input-focus: #2563eb;
+
+  --brand: #2563eb;
+  --brand-contrast: #ffffff;
+
+  --success-bg: #ecfdf5;
+  --success-text: #065f46;
+  --success-accent: #10b981;
+
+  --error-bg: #fef2f2;
+  --error-text: #991b1b;
+  --error-accent: #ef4444;
+
+  --info-bg: #eff6ff;
+  --info-text: #1e3a8a;
+  --info-accent: #3b82f6;
+
+  --radius: 12px;
+  --shadow: 0 10px 25px rgba(0,0,0,.06);
+  --ring: 0 0 0 3px color-mix(in srgb, var(--input-focus) 25%, transparent);
+}
+
+/* ===== Card ===== */
+.card {
+  max-width: 980px;
+  margin: 96px auto 40px; /* space under fixed navbar */
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  color: var(--text);
+}
+
+.card > h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  letter-spacing: .2px;
+}
+
+/* ===== Upload row ===== */
+.upload {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* Style the native file input nicely */
+.upload input[type="file"] {
+  font-size: 0.95rem;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 8px 10px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.upload input[type="file"]:focus-visible {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: var(--ring);
+}
+
+/* Chrome / Edge / Firefox */
+.upload input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  border: none;
+  background: var(--brand);
+  color: var(--brand-contrast);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform .06s ease, opacity .2s ease;
+}
+.upload input[type="file"]::file-selector-button:active {
+  transform: translateY(1px);
+}
+.upload input[type="file"]:disabled::file-selector-button {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* ===== Alerts ===== */
+.info, .error, .success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border-left: 4px solid;
+  font-size: 0.95rem;
+  margin: 8px 0;
+}
+
+.info {
+  background: var(--info-bg);
+  color: var(--info-text);
+  border-left-color: var(--info-accent);
+}
+.error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border-left-color: var(--error-accent);
+}
+.success {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-left-color: var(--success-accent);
+}
+
+/* ===== Form layout ===== */
+.form {
+  margin-top: 10px;
+}
+
+.form .grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+/* Inputs */
+.form input,
+.form select,
+.form textarea {
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.97rem;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.form textarea { resize: vertical; }
+
+/* Focus states */
+.form input:focus-visible,
+.form select:focus-visible,
+.form textarea:focus-visible {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: var(--ring);
+}
+
+/* Angular validation helpers */
+.form .invalid {
+  color: var(--error-text);
+  font-size: 0.8rem;
+}
+
+/* Mark touched+invalid controls */
+.form :where(input, select, textarea).ng-touched.ng-invalid {
+  border-color: var(--error-accent);
+}
+
+/* ===== Actions & Buttons ===== */
+.actions {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--input-border);
+  background: #f9fafb;
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform .06s ease, opacity .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.btn:hover { background: #f3f4f6; }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+
+.btn.primary {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--brand-contrast);
+}
+.btn.primary:hover { filter: brightness(0.98); }
+
+/* ===== Responsive ===== */
+@media (max-width: 780px) {
+  .card { padding: 18px; }
+  .form .grid { grid-template-columns: 1fr; }
+}
