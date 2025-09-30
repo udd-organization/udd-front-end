@@ -7,4 +7,5 @@ export interface IncidentReport  {
   severity: SeverityLevel;
   attackedOrganizationAddress: string;
   content: string | null;
+  filename: string | null;
 }

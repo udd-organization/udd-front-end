@@ -1,0 +1,46 @@
+<div class="card">
+  <h2>Search Documents</h2>
+
+  <form class="form" (ngSubmit)="submit()" [formGroup]="form">
+    <div class="grid">
+      <label class="wide">
+        Keywords (comma/newline separated)
+        <textarea rows="3" formControlName="query"
+        ></textarea>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" type="submit" [disabled]="loading">Search</button>
+      <button class="btn" type="button" (click)="clear()" [disabled]="loading">Clear</button>
+    </div>
+  </form>
+
+  @if (loading) {
+    <div class="info mt12">Searching…</div>
+  }
+
+  @if (error) {
+    <div class="error mt12">{{ error }}</div>
+  }
+
+  @if (!loading && !error) {
+    @if (results.length === 0) {
+      <div class="info mt12">No documents yet. Try different keywords.</div>
+    } @else {
+      <div class="results-grid">
+        @for (r of results; track $index) {
+          <article class="doc-card">
+            <div class="doc-filename" *ngIf="r.filename as f">{{ f }}</div>
+
+            <div class="doc-snippets">
+              @for (snippet of getAllDynamicSummaries(r); track $index) {
+                <p class="doc-snippet" [innerHTML]="snippet | safeHtml"></p>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    }
+  }
+</div>

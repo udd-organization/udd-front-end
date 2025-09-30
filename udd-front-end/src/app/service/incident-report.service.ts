@@ -45,4 +45,8 @@ export class IncidentReportService {
 
     return this.http.post<IncidentReport>(`${this.api}incident-reports/upload/confirm`, form);
   }
+
+  searchSimple(keywords: string[]): Observable<IncidentReport[]> {
+        return this.http.post<IncidentReport[]>(`${this.api}incident-reports/search/simple`, { keywords });
+    }
 }

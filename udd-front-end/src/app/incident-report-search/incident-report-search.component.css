@@ -1,0 +1,83 @@
+/* small utility */
+.mt12 { margin-top: 12px; }
+
+/* wrapper for the cards */
+.results-grid {
+  margin-top: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+/* card + elements (uses your CSS variables) */
+.doc-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+}
+
+.doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.doc-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.badge {
+  border: 1px solid var(--input-border);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: #f9fafb;
+}
+
+.doc-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 8px 0 6px;
+}
+
+.doc-meta small {
+  color: var(--muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.doc-meta .v {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.doc-snippet {
+  margin-top: 6px;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+/* responsive */
+@media (max-width: 780px) {
+  .doc-meta { grid-template-columns: 1fr; }
+}
+
+.doc-snippet{
+  /* standardno (Overflow Level 4) */
+  line-clamp: 3;
+  overflow: clip;        /* ili hidden */
+
+  /* fallback za stariji WebKit */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.doc-filename { margin-top: 4px; font-size: .85rem; color: var(--muted); }

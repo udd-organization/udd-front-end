@@ -1,1 +1,93 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --card-bg: #fff;
+  --text: #1f2937;
+  --muted: #6b7280;
+
+  --border: #e5e7eb;
+  --input-bg: #fff;
+  --input-border: #d1d5db;
+  --input-focus: #2563eb;
+
+  --brand: #2563eb;
+  --brand-contrast: #ffffff;
+
+  --success-bg: #ecfdf5;
+  --success-text: #065f46;
+  --success-accent: #10b981;
+
+  --error-bg: #fef2f2;
+  --error-text: #991b1b;
+  --error-accent: #ef4444;
+
+  --info-bg: #eff6ff;
+  --info-text: #1e3a8a;
+  --info-accent: #3b82f6;
+
+  --radius: 12px;
+  --shadow: 0 10px 25px rgba(0,0,0,.06);
+  --ring: 0 0 0 3px color-mix(in srgb, var(--input-focus) 25%, transparent);
+}
+
+/* card + form base (since your HTML uses .card, .form, .btn from earlier) */
+.card {
+  max-width: 980px;
+  margin: 96px auto 40px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  color: var(--text);
+}
+.card > h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  letter-spacing: .2px;
+}
+.form { margin-top: 10px; }
+.form .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.wide { grid-column: 1 / -1; }
+.form label { display: flex; flex-direction: column; gap: 8px; font-size: .92rem; color: var(--muted); }
+.form input, .form select, .form textarea {
+  background: var(--input-bg); color: var(--text);
+  border: 1px solid var(--input-border); border-radius: 10px;
+  padding: 10px 12px; font-size: .97rem;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.form textarea { resize: vertical; }
+.form input:focus-visible, .form select:focus-visible, .form textarea:focus-visible {
+  outline: none; border-color: var(--input-focus); box-shadow: var(--ring);
+}
+.actions { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  appearance: none; border: 1px solid var(--input-border);
+  background: #f9fafb; color: var(--text);
+  padding: 10px 14px; border-radius: 10px; font-weight: 500; cursor: pointer;
+  transition: transform .06s, opacity .2s, background .2s, border-color .2s;
+}
+.btn:hover { background: #f3f4f6; }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: var(--brand-contrast); }
+.btn.primary:hover { filter: brightness(.98); }
+
+/* alerts */
+.info, .error, .success {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+  border-radius: 10px; border-left: 4px solid; font-size: .95rem; margin: 8px 0;
+}
+.info { background: var(--info-bg); color: var(--info-text); border-left-color: var(--info-accent); }
+.error { background: var(--error-bg); color: var(--error-text); border-left-color: var(--error-accent); }
+.success { background: var(--success-bg); color: var(--success-text); border-left-color: var(--success-accent); }
+
+/* highlight inside innerHTML must be global */
+em.highlight {
+  background: color-mix(in srgb, var(--info-accent) 30%, white);
+  padding: 0 2px;
+  border-radius: 4px;
+  font-weight: 500; /* optional, helps emphasize */
+}
+
+/* responsive form grid */
+@media (max-width: 780px) { .form .grid { grid-template-columns: 1fr; } }
