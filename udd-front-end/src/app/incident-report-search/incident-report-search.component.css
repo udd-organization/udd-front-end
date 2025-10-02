@@ -81,3 +81,30 @@
 }
 
 .doc-filename { margin-top: 4px; font-size: .85rem; color: var(--muted); }
+
+.searchtype-group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid var(--input-border);
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.radio {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.mode-pill {
+  margin-left: auto;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--input-border);
+  opacity: 0.8;
+}
