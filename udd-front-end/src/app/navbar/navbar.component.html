@@ -5,6 +5,18 @@
         <button class="nav-links-item" (click)="homepage()">Homepage</button>
       </li>
 
+      <li>
+        <button class="nav-links-item" [routerLink]="'/incident-reports-search'">
+          Search Documents
+        </button>
+      </li>
+
+      <li>
+        <button class="nav-links-item" [routerLink]="'/incident-reports-upload'">
+          Upload Document
+        </button>
+      </li>
+
       @if (isLoggedIn()) {
         <li>
           <button class="nav-links-item" (click)="logout()">Logout</button>
